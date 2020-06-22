@@ -9,9 +9,9 @@ import binascii
 #A6 = GAME
 #B0 = EMC2
 #C6 = GIN
-#BF = SUQA
 #B0 = AYA
-prefixList = ['KMD', 'BC', 'BTC', '80', 'GAME', 'A6', 'EMC2', 'B0', 'GIN', 'C6', 'SUQA', 'BF', 'AYA', 'B0']
+#3A = TCL
+prefixList = ['KMD', 'BC', 'BTC', '80', 'GAME', 'A6', 'EMC2', 'B0', 'GIN', 'C6', 'AYA', 'B0', 'TCL', '3A']
 private_key_WIF = input('Enter WIF: ')
 
 first_encode = base58.b58decode(private_key_WIF)
