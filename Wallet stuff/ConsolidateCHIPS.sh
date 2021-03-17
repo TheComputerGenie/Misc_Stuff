@@ -3,10 +3,10 @@ SHELL=/bin/sh PATH=/bin:/sbin:/usr/bin:/usr/sbin
 #
 # You MUST have jq installed for this to work https://stedolan.github.io/jq/download/
 #
-# use like: ./ConsolidateCHIPS.sh RJ8q5vbzEiSRNeAu39xYfawuTa9djYEsQK
+# use like: ./ConsolidateCHIPS.sh RCGxKMDxZcBGRZkxvgCRAXGpiQFt8wU7Wq
 #
 
-cd /usr/local/bin || return #chips-cli location
+cd $HOME/chips/src/ || return #chips-cli location
 
 Addy=""
 if [ "${1}" = "" ]; then
