@@ -12,7 +12,8 @@ import binascii
 #B0 = AYA
 #3A = TCL
 #B0 = LTC
-prefixList = ['KMD', 'BC', 'BTC', '80', 'GAME', 'A6', 'EMC2', 'B0', 'GIN', 'C6', 'AYA', 'B0', 'TCL', '3A', 'LTC', 'B0']
+prefixList = ['KMD', 'BC', 'BTC', '80', 'GAME', 'A6', 'EMC2', 'B0',
+              'GIN', 'C6', 'AYA', 'B0', 'TCL', '3A', 'LTC', 'B0']
 private_key_WIF = input('Enter WIF: ')
 
 first_encode = base58.b58decode(private_key_WIF)
@@ -21,9 +22,9 @@ private_key_full = binascii.hexlify(first_encode)
 private_key = private_key_full[2:-8]
 private_key_static = private_key.decode("utf-8")
 
-print('privkey:',private_key_static)
+print('privkey:', private_key_static)
 
-for iprefix in range(len(prefixList)) :
+for iprefix in range(len(prefixList)):
     spot = iprefix%2
     if spot != 0:
         extended_key = prefixList[iprefix]+private_key_static
@@ -32,6 +33,6 @@ for iprefix in range(len(prefixList)) :
         final_key = extended_key+second_sha256[:8]
         WIF = base58.b58encode(binascii.unhexlify(final_key))
 
-        print ('WIF:', WIF.decode("utf-8"))
+        print('WIF:', WIF.decode("utf-8"))
     else:
         print(prefixList[iprefix])
