@@ -29,7 +29,7 @@ echo "There are currently ${inpool} txes in the mempool"
 echo "LTC/USD: ${USD}"
 echo "Our fee(per byte): ${TXFEE_SATOSHI_BYTE}"
 
-UTXOs=$(curl -s https://chain.so/api/v2/get_tx_unspent/LTC/${NN_ADDRESS} | jq '.data.txs|[map(select(( (.value|tonumber) != 10000)))| .[] | {txid, output_no, value,script_hex}]')
+UTXOs=$(curl -s https://chain.so/api/v2/get_tx_unspent/LTC/${NN_ADDRESS} | jq '.data.txs|[map(select(( (.value|tonumber) != 0.00010000)))| .[] | {txid, output_no, value,script_hex}]')
 
 SPLIT_VALUE=0.0001
 COINAGE_TOTAL=0
