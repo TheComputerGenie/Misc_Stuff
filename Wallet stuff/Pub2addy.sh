@@ -23,15 +23,6 @@ BTC | BCH)
 DGB | DOGE | PIVX)
     prefix="30"
     ;;
-BTG)
-    prefix="38"
-    ;;
-HUSH2)
-    prefix="7352"
-    ;;
-HUSH3)
-    prefix="60"
-    ;;
 *)
     prefix="60"
     ;;
