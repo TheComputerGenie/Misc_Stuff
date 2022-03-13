@@ -3,18 +3,16 @@ import hashlib
 import base58
 import binascii
 
+#prefix = `base58Prefixes[SECRET_KEY]` decimal converted to hex
 
-
-#BC = KMD
-#B0 = LTC
-#80 = BTC
-#A6 = GAME
-#B0 = EMC2
-#C6 = GIN
-#BF = SUQA
-#B0 = AYA
 #3A = TCL
 #41 = GLEEC
+#80 = BTC
+#A6 = GAME
+#B0 = AYA, EMC2, & LTC
+#BC = KMD
+#C6 = GIN
+#BF = SUQA
 #EF = MIL
 
 prefixList = ['KMD', 'BC', 'LTC', 'B0', 'BTC', '80', 'EMC2', 'B0', 'AYA', 'B0','41', 'MIL', 'EF']
