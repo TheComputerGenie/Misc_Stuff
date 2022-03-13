@@ -2,7 +2,7 @@
 import hashlib
 import base58
 import binascii
-
+#orig from:https://github.com/geniusprodigy/bitcoin-convertpvk
 #prefix = `base58Prefixes[SECRET_KEY]` decimal converted to hex
 
 #3A = TCL
