@@ -4,16 +4,20 @@ import base58
 import binascii
 
 
+
 #BC = KMD
+#B0 = LTC
 #80 = BTC
 #A6 = GAME
 #B0 = EMC2
 #C6 = GIN
+#BF = SUQA
 #B0 = AYA
 #3A = TCL
-#B0 = LTC
-prefixList = ['KMD', 'BC', 'BTC', '80', 'GAME', 'A6', 'EMC2', 'B0',
-              'GIN', 'C6', 'AYA', 'B0', 'TCL', '3A', 'LTC', 'B0']
+#41 = GLEEC
+#EF = MIL
+
+prefixList = ['KMD', 'BC', 'LTC', 'B0', 'BTC', '80', 'EMC2', 'B0', 'AYA', 'B0','41', 'MIL', 'EF']
 private_key_WIF = input('Enter WIF: ')
 
 first_encode = base58.b58decode(private_key_WIF)
