@@ -15,7 +15,7 @@ import binascii
 #BF = SUQA
 #EF = MIL
 
-prefixList = ['KMD', 'BC', 'LTC', 'B0', 'BTC', '80', 'EMC2', 'B0', 'AYA', 'B0','41', 'MIL', 'EF']
+prefixList = ['KMD', 'BC', 'LTC', 'B0', 'BTC', '80', 'EMC2', 'B0', 'AYA', 'B0', 'MIL', 'EF']
 private_key_WIF = input('Enter WIF: ')
 
 first_encode = base58.b58decode(private_key_WIF)
