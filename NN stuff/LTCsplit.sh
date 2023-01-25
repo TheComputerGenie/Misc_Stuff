@@ -1,11 +1,11 @@
 #!/bin/bash
 # Adopted from "Split NN script by Decker"
 # uses blockchair.com to estimate the best fee to use, to count the mempool, and to show the USD value of BTC
-# uses chain.so to get UTXOs
+# uses blockcypher.com to get UTXOs
 
 NN_ADDRESS=LYkPqWDBymF5ZgKb2dGS3Sayw5Hc9qnPsu                                # fill your NN address here
 NN_PUBKEY=03f9dd0484e81174fd50775cb9099691c7d140ff00c0f088847e38dc87da67eb9b # fill your pubkey here
-SPLIT_COUNT=78                                                               # more than 200-250 will impact node performance
+SPLIT_COUNT=38                                                               # more than 200-250 will impact node performance
 
 NN_PUBKEY_SHA=$(xxd -r -p <<<"${NN_PUBKEY}" | sha256sum | awk '{print $1}')
 NN_HASH160=$(xxd -r -p <<<"${NN_PUBKEY_SHA}" | openssl rmd160 | cut -c 10-)
@@ -29,8 +29,7 @@ echo "There are currently ${inpool} txes in the mempool"
 echo "LTC/USD: ${USD}"
 echo "Our fee(per byte): ${TXFEE_SATOSHI_BYTE}"
 
-#UTXOs=$(curl -s https://chain.so/api/v2/get_tx_unspent/LTC/${NN_ADDRESS}|jq '.data.txs|[map(select(( (.value|tonumber) != 0.00010000)))| .[] | {txid, output_no, value,script_hex}]')
-UTXOs=$(curl -s "https://api.blockcypher.com/v1/ltc/main/addrs/${NN_ADDRESS}?unspentOnly=true&includeScript=true" | jq '.txrefs|[map(select(( (.value|tonumber) != 10000)))| .[] | {tx_hash, tx_output_n, value, script}]')
+UTXOs=$(curl -s "https://api.blockcypher.com/v1/ltc/main/addrs/${NN_ADDRESS}?unspentOnly=true" | jq '.txrefs|[map(select(( (.value|tonumber) != 10000)))| .[] | {tx_hash, tx_output_n, value}]')
 SPLIT_VALUE=0.0001
 COINAGE_TOTAL=0
 SPLIT_VALUE_SATOSHI=$(bc <<<"${SPLIT_VALUE}*100000000")
@@ -48,7 +47,6 @@ if [[ $UTXOs != "null" ]]; then
 	done
 	COINAGE_TOTAL_SATOSHI=$(bc <<<"scale=0;${COINAGE_TOTAL}*100000000")
 	echo "Coinage total: ${COINAGE_TOTAL/#./0.} ($"$(bc <<<"scale=2;${COINAGE_TOTAL}*${USD}")")"
-	for script in $(jq -r '.[].script_hex' <<<"${UTXOs}"); do scripts+=("$script"); done
 	TOTAL_INS=${#vins[@]}
 	TOTAL_UTXOs=$(bc <<<"${TOTAL_INS} + ${SPLIT_COUNT}")
 	if [[ $TOTAL_UTXOs -gt 252 ]]; then
