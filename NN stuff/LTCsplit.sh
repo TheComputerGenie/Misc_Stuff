@@ -30,7 +30,7 @@ echo "LTC/USD: ${USD}"
 echo "Our fee(per byte): ${TXFEE_SATOSHI_BYTE}"
 
 #UTXOs=$(curl -s https://chain.so/api/v2/get_tx_unspent/LTC/${NN_ADDRESS}|jq '.data.txs|[map(select(( (.value|tonumber) != 0.00010000)))| .[] | {txid, output_no, value,script_hex}]')
-UTXOs=$(curl -s "https://api.blockcypher.com/v1/ltc/main/addrs/${NN_ADDRESS}?unspentOnly=true&includeScript=true" | jq '.txrefs|[map(select(( (.value|tonumber) != 0.00010000)))| .[] | {tx_hash, tx_output_n, value, script}]')
+UTXOs=$(curl -s "https://api.blockcypher.com/v1/ltc/main/addrs/${NN_ADDRESS}?unspentOnly=true&includeScript=true" | jq '.txrefs|[map(select(( (.value|tonumber) != 10000)))| .[] | {tx_hash, tx_output_n, value, script}]')
 SPLIT_VALUE=0.0001
 COINAGE_TOTAL=0
 SPLIT_VALUE_SATOSHI=$(bc <<<"${SPLIT_VALUE}*100000000")
